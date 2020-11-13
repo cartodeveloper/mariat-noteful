@@ -55,7 +55,7 @@ export default class Note extends Component {
           <div className="Note__dates-modified">
             Modified{" "}
             <span className="Date">
-              {format(this.props.modified, "Do MMM yyyy")}
+              {format(this.props.modified, "Do MMM YYYY")}
             </span>
           </div>
         </div>
