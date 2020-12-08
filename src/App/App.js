@@ -61,7 +61,7 @@ class App extends Component {
         {["/", "/folder/:folderId"].map((path) => (
           <Route exact key={path} path={path} component={NoteListNav} />
         ))}
-        {["/note/:noteId", "/add-folder", "/add-note"].map((path) => (
+        {["/note/:note_id", "/add-folder", "/add-note"].map((path) => (
           <Route key={path} path={path} component={NotePageNav} />
         ))}
       </>
@@ -74,15 +74,15 @@ class App extends Component {
         {["/", "/folder/:folderId"].map((path) => (
           <Route exact key={path} path={path} component={NoteListMain} />
         ))}
-        <Route path="/note/:noteId" component={NotePageMain} />
+        <Route path="/note/:note_id" component={NotePageMain} />
         <Route path="/add-folder" component={AddFolder} />
         <Route path="/add-note/:folderId" component={AddNote} />
       </>
     );
   }
 
-  deleteNote = (noteId) => {
-    const newNotes = this.state.notes.filter((n) => n.id !== noteId);
+  deleteNote = (note_id) => {
+    const newNotes = this.state.notes.filter((n) => n.id !== note_id);
     this.setState({
       notes: newNotes,
     });
@@ -101,6 +101,14 @@ class App extends Component {
       folders: newFolders,
     });
   };
+  updateNote = (updatedNote) => {
+    const newNotes = this.state.notes.map((note) =>
+      note.id === updatedNote.id ? updatedNote : note.id
+    );
+    this.setState({
+      notes: newNotes,
+    });
+  };
 
   render() {
     const contextValue = {
@@ -109,6 +117,7 @@ class App extends Component {
       deleteNote: this.deleteNote,
       addFolder: this.addFolder,
       addNote: this.addNote,
+      updateNote: this.updateNote,
     };
 
     return (
