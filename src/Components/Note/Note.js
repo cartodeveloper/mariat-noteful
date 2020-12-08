@@ -20,18 +20,18 @@ export default class Note extends Component {
       method: "DELETE",
       headers: { "content-type": "application/json" },
     };
-    const noteId = this.props.id;
+    const note_id = this.props.id;
 
-    fetch(BASE_URL + `/notes/${noteId}`, options)
+    fetch(BASE_URL + `/notes/${note_id}`, options)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Something went wrong deleting the note.");
         }
-        return response.json();
+        return response;
       })
       .then((r) => {
-        this.context.deleteNote(noteId);
-        this.props.onDeleteNote(noteId);
+        this.context.deleteNote(note_id);
+        this.props.onDeleteNote(note_id);
       })
       .catch((error) => {
         console.error(error);
@@ -66,7 +66,7 @@ export default class Note extends Component {
 
 // using prop types for validation
 Note.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   modified: PropTypes.string.isRequired,
 };

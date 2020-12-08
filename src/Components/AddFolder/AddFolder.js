@@ -75,6 +75,7 @@ export default class AddFolder extends Component {
             type="text"
             id="folderName"
             name="folderName"
+            aria-describedby="folderNameDescription"
             aria-required="true"
             aria-invalid={folderError}
             value={this.state.folder.name}
