@@ -1,1 +1,3 @@
-export const BASE_URL = `https://noteful-api-maria.herokuapp.com/api`;
+export default {
+  API_ENDPOINT: `https://noteful-api-maria.herokuapp.com/api`,
+};
